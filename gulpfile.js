@@ -22,7 +22,7 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('build/css'));
 });
 
-gulp.task('js', ['ts', 'bundle']);
+gulp.task('js', ['ts', 'jsx', 'bundle']);
 
 gulp.task('ts', function() {
     return gulp.src('src/*.ts')
@@ -33,6 +33,12 @@ gulp.task('ts', function() {
         }))
         .pipe(gulp.dest('lib'))
 });
+
+gulp.task('jsx', function() {
+    return gulp.src('src/*.jsx')
+        .pipe(gulpPlugins.react())
+        .pipe(gulp.dest('lib'))
+})
 
 gulp.task('bundle', function() {
     return gulp.src('lib/app.js')
