@@ -1,0 +1,34 @@
+{
+  "name": "surge-playground",
+  "description": "Test site",
+  "version": "0.0.1",
+  "homepage": "https://github.com/rrees/surge-playground",
+  "author": {
+    "name": "Robert Rees",
+    "url": "https://github.com/rrees"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rrees/surge-playground.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rrees/surge-playground/issues"
+  },
+  "main": "gulpfile.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+      "jade": "~1.9.2",
+      "gulp": "~3.8.11",
+      "gulp-jade":"~1.0.0",
+      "gulp-run": "~1.6.0",
+      "gulp-sass": "~1.3",
+      "gulp-typescript": "~2.6",
+      "gulp-browserify": "~0.5",
+      "auto-plug": "~1.0",
+      "surge": "~0.9",
+      "react": "~0.13"
+  },
+  "keywords": [
+  ]
+}
