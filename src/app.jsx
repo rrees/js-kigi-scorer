@@ -1,6 +1,5 @@
 var React = require('react');
 
 React.render(
-    React.createElement('p',
-        null, 'Hello from React'), document.getElementById('app')
+    <h2>Hello from React</h2>, document.getElementById('app')
     );

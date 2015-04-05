@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var gulpPlugins = require('auto-plug')('gulp');
 var jade = require('jade');
 
-gulp.task('default', ['deploy']);
+gulp.task('default', ['build']);
 
 gulp.task('build', ['jade', 'sass', 'js']);
 
@@ -22,7 +22,7 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('build/css'));
 });
 
-gulp.task('js', ['ts', 'jsx', 'bundle']);
+gulp.task('js', ['bundle']);
 
 gulp.task('ts', function() {
     return gulp.src('src/*.ts')
@@ -40,7 +40,7 @@ gulp.task('jsx', function() {
         .pipe(gulp.dest('lib'))
 })
 
-gulp.task('bundle', function() {
+gulp.task('bundle', ['ts', 'jsx'], function() {
     return gulp.src('lib/app.js')
         .pipe(gulpPlugins.browserify())
         .pipe(gulp.dest('build/js'));
