@@ -22,30 +22,11 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('build/css'));
 });
 
-gulp.task('js', ['bundle']);
-
-gulp.task('ts', function() {
-    return gulp.src('src/*.ts')
-        .pipe(gulpPlugins.typescript({
-            declarationFiles: true,
-            noExternalResolve: true,
-            module: 'commonjs'
-        }))
-        .pipe(gulp.dest('lib'))
-});
-
-gulp.task('jsx', function() {
-    return gulp.src('src/*.jsx')
-        .pipe(gulpPlugins.react())
-        .pipe(gulp.dest('lib'))
+gulp.task('js', function() {
+    return gulp.src('src/*.js')
+        .pipe(gulp.dest('build/js'))
 })
 
-gulp.task('bundle', ['ts', 'jsx'], function() {
-    return gulp.src('lib/app.js')
-        .pipe(gulpPlugins.browserify())
-        .pipe(gulp.dest('build/js'));
-});
-
 gulp.task('deploy', ['build'], function() {
-    return gulpPlugins.run('surge build rrees-kigi-scorer.surge.sh').exec();
+    return gulpPlugins.run('surge build static-angular-template.surge.sh').exec();
 });
