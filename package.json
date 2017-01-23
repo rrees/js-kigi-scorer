@@ -1,5 +1,5 @@
 {
-  "name": "surge-playground",
+  "name": "js-kigi-scorer",
   "description": "Test site",
   "version": "0.0.1",
   "homepage": "https://github.com/rrees/surge-playground",
@@ -9,10 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rrees/surge-playground.git"
+    "url": "https://github.com/rrees/js-kigi-scorer"
   },
   "bugs": {
-    "url": "https://github.com/rrees/surge-playground/issues"
+    "url": "https://github.com/rrees/js-kigi-scorer/issues"
   },
   "main": "gulpfile.js",
   "dependencies": {
