@@ -6,4 +6,10 @@ angular.module('app', [])
         var vm = this;
         console.log('Main Controller created');
         this.message = "Hello from the controller";
+    }])
+    .directive('scorer', [function() {
+        return {
+            'restrict': 'E',
+            'template': 'Hello from the directive'
+        }
     }]);
