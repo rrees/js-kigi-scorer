@@ -3,10 +3,19 @@ function ScorerController() {
     var vm = this;
     vm.players = [];
 
-    vm.addPlayer = function(name) {
+    vm.addPlayer = function (name) {
         console.log(name);
-        vm.players.push({name: name});
+        vm.players.push({
+            name: name,
+            scores: []
+        });
         vm.playerName = "";
+    }
+
+    vm.addScore = function (player, score) {
+        console.log(player);
+        console.log(score);
+        player.scores.push(score);
     }
 }
 
@@ -16,16 +25,26 @@ const scorerTemplate = `
 <button ng-click="$ctrl.addPlayer($ctrl.playerName)">Add player</button>
 </form>
 
-<player player="player" ng-repeat="player in $ctrl.players"></player>
+<player player="player" ng-repeat="player in $ctrl.players" on-add-score="$ctrl.addScore(player, score)"></player>
 `;
 
 function PlayerController() {
-    var vm = this;
+    var ctrl = this;
+    ctrl.addScore = function() {
+        console.log('Adding score');
+        console.log(ctrl.score);
+        console.log(ctrl.player);
+        ctrl.onAddScore({player: ctrl.player, score: ctrl.score});
+    }
 }
 
 const playerTemplate = `
 <div class="player-data">
 <h2>{{$ctrl.player.name}}</h2>
+<form>
+<input type="number" required ng-model="$ctrl.score">
+<button ng-click="$ctrl.addScore($ctrl.player, $ctrl.score)">Add score</button>
+</form>
 <table>
     <thead>
         <tr>
@@ -34,6 +53,9 @@ const playerTemplate = `
     </thead>
 
     <tbody>
+        <tr ng-repeat="score in $ctrl.player.scores">
+            <td>{{score}}</td>
+        </tr>
     </tbody>
 </table>
 </div>
@@ -53,6 +75,7 @@ angular.module('app', [])
         template: playerTemplate,
         controller: PlayerController,
         bindings: {
-            player: '<'
+            player: '<',
+            onAddScore: '&'
         }
     });
