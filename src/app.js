@@ -1,29 +1,22 @@
 
-console.log('Hello world');
-
 function ScorerController() {
     var vm = this;
     vm.players = [];
 
     vm.addPlayer = function(name) {
         console.log(name);
-        vm.players.push(name);
+        vm.players.push({name: name});
         vm.playerName = "";
     }
 }
 
 const scorerTemplate = `
-<p>Hello from the <em>component</em></p>
 <form>
 <input type="text" placeholder="Player name" ng-model="$ctrl.playerName">
 <button ng-click="$ctrl.addPlayer($ctrl.playerName)">Add player</button>
 </form>
 
-<div class="player-data" ng-repeat="player in $ctrl.players">
-<p>{{player}}</p>
-</div>
-
-<player name="name" ng-repeat="name in $ctrl.players"></player>
+<player player="player" ng-repeat="player in $ctrl.players"></player>
 `;
 
 function PlayerController() {
@@ -32,15 +25,23 @@ function PlayerController() {
 
 const playerTemplate = `
 <div class="player-data">
-<p>{{$ctrl.name}}</p>
+<h2>{{$ctrl.player.name}}</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Scores</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    </tbody>
+</table>
 </div>
 `;
 
 angular.module('app', [])
     .controller('MainCtrl', [function() {
         var vm = this;
-        console.log('Main Controller created');
-        this.message = "Hello from the controller";
     }])
     .component('scorer', {
         'restrict': 'E',
@@ -52,6 +53,6 @@ angular.module('app', [])
         template: playerTemplate,
         controller: PlayerController,
         bindings: {
-            name: '<'
+            player: '<'
         }
     });
