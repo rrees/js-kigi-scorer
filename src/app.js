@@ -22,6 +22,18 @@ const scorerTemplate = `
 <div class="player-data" ng-repeat="player in $ctrl.players">
 <p>{{player}}</p>
 </div>
+
+<player name="name" ng-repeat="name in $ctrl.players"></player>
+`;
+
+function PlayerController() {
+    var vm = this;
+}
+
+const playerTemplate = `
+<div class="player-data">
+<p>{{$ctrl.name}}</p>
+</div>
 `;
 
 angular.module('app', [])
@@ -34,4 +46,12 @@ angular.module('app', [])
         'restrict': 'E',
         'template': scorerTemplate,
         controller: ScorerController
+    })
+    .component('player', {
+        restrict: 'E',
+        template: playerTemplate,
+        controller: PlayerController,
+        bindings: {
+            name: '<'
+        }
     });
